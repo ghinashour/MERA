@@ -1,0 +1,33 @@
+# One-click API deploy on Render (free tier).
+# Render → New → Blueprint → pick this repo. Then fill the empty env vars.
+services:
+  - type: web
+    name: mera-api
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: ~22
+      - key: DATABASE_URL
+        sync: false # paste your Neon/Supabase Postgres connection string
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false # e.g. https://mera-web.vercel.app (update after Vercel deploy)
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PAYPAL_MODE
+        value: sandbox
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        value: MERA <hello@mera.shop>

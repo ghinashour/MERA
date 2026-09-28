@@ -18,7 +18,7 @@ import { PaymentsModule } from './payments/payments.module';
 import { UploadModule } from './upload/upload.module';
 import { ContentModule } from './content/content.module';
 import { AdminModule } from './admin/admin.module';
-import { HealthController } from './health.controller';
+import { HealthController, RootController } from './health.controller';
 import { SeedService } from './seed.service';
 
 @Module({
@@ -49,7 +49,7 @@ import { SeedService } from './seed.service';
     ContentModule,
     AdminModule,
   ],
-  controllers: [HealthController],
+  controllers: [RootController, HealthController],
   providers: [SeedService],
 })
 export class AppModule {}

@@ -1,0 +1,13 @@
+Step 2 — Free database (Neon)
+1. Sign up at neon.tech → New Project (free tier, region closest to you).
+2. Copy the connection string (postgresql://...neon.tech/...?sslmode=require).
+Step 3 — Free API (Render)
+1. Sign up at render.com → New → Blueprint → connect your mera repo (it auto-detects the render.yaml I added).
+2. Fill the prompted env vars: DATABASE_URL (from Neon), ADMIN_EMAIL, ADMIN_PASSWORD (pick a strong one), FRONTEND_URL (temporarily https://placeholder.vercel.app), PayPal sandbox keys if you have them (optional).
+3. Deploy. Your API will be at https://mera-api.onrender.com — check .../api/health returns {"ok":true}. Tables + admin user + products seed automatically on first boot.
+Step 4 — Free storefront (Vercel)
+1. Sign up at vercel.com → Add New Project → import your mera repo.
+2. Set Root Directory to web.
+3. Env vars: NEXT_PUBLIC_API=https://mera-api.onrender.com/api and NEXT_PUBLIC_WHATSAPP=96181580436. Deploy.
+Step 5 — Link them
+Back in Render → mera-api → Environment → set FRONTEND_URL to your real Vercel URL (e.g. https://mera-web.vercel.app) → Save (auto-redeploys). Then open your store, log into /admin with your ADMIN_EMAIL/ADMIN_PASSWORD.

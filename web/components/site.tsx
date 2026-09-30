@@ -2,13 +2,14 @@
 import { useState } from 'react';
 import { waLink } from '../lib/api';
 import { SearchOverlay } from './search-overlay';
+import { WhatsAppLink } from './whatsapp-icon';
 export function Header({ count, onCart }: { count: number; onCart: () => void }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="top"><div className="wrap top-in">
       <button className="burger" aria-label="Menu" onClick={() => setOpen((o) => !o)}>☰</button>
       <a className="logo" href="/">MERA</a>
-      <nav className={'main' + (open ? ' open' : '')} onClick={() => setOpen(false)}><a href="/shop">Shop</a><SearchOverlay /><a href="/journal">Journal</a><a href="/story">Story</a><a href="/help/shipping">Help</a><a href="/admin">Admin</a><a href={waLink('Hello MERA! I have a question.')} target="_blank" rel="noreferrer" style={{ fontWeight: 700 }}>WhatsApp</a></nav>
+      <nav className={'main' + (open ? ' open' : '')} onClick={() => setOpen(false)}><a href="/shop">Shop</a><SearchOverlay /><a href="/journal">Journal</a><a href="/story">Story</a><a href="/help/shipping">Help</a><a href="/admin">Admin</a></nav>
       <div className="icons"><a href="/auth">Account</a><button onClick={onCart} style={{ background: 'none', border: 0, font: 'inherit', cursor: 'pointer' }}>Bag ({count})</button></div>
     </div></header>
   );
@@ -30,7 +31,7 @@ export function Footer() {
       <div><strong>Shop</strong><br /><span className="small"><a href="/shop">All</a> / <a href="/search">Search</a></span></div>
       <div><strong>About</strong><br /><span className="small"><a href="/story">Story</a> / <a href="/journal">Journal</a></span></div>
       <div><strong>Help</strong><br /><span className="small"><a href="/help/shipping">Shipping</a> / <a href="/help/returns">Returns</a> / <a href="/help/contact">Contact</a></span></div>
-      <div><div className="logo">MERA</div><p className="small">PayPal + Cash on Delivery</p><p><a className="btn" href={waLink('Hello MERA! I have a question.')} target="_blank" rel="noreferrer">WhatsApp us →</a></p></div>
+      <div><div className="logo">MERA</div><p className="small">PayPal + Cash on Delivery</p><p><WhatsAppLink href={waLink('Hello MERA! I have a question.')} /></p></div>
     </div><div className="bottom"><span>© 2026 MERA</span><span>United States (USD)</span></div></footer>
   );
 }

@@ -8,7 +8,8 @@ export default function Shop() {
   useEffect(() => { getProducts().then(setPs).catch(() => setPs([])); }, []);
   const add = async (id: string, title: string) => {
     try {
-      const r = await fetch(`${API}/cart/add`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-session-id': sid() }, body: JSON.stringify({ productId: id, qty: 1 }) });
+      const p = ps.find((x) => x.id === id);
+      const r = await fetch(`${API}/cart/add`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-session-id': sid() }, body: JSON.stringify({ productId: id, qty: 1, title: p?.title || title, priceCents: p?.priceCents, image: p ? imgFor(p) : undefined, slug: p?.slug }) });
       if (!r.ok) throw 0;
       setNotice(`${title} added to your bag.`);
       setTimeout(() => setNotice(''), 2500);

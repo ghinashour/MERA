@@ -5,11 +5,9 @@ dist
 web/node_modules
 web/.next
 web/out
+web/.env.local
 coverage
 *.log
 .DS_Store
 .history/
 dev.sqlite*
-
-
-deploy.txt
